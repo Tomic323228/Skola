@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body>
+	<h1>Gaidot dzimšanas dienu..</h1>
+        <hr>
+	<form>
+            <p>Ievadi pilnu datumu, kad Tev būs tuvākā dzimšanas diena</p>
+            <p>diena:<input type="text" id="birthday-day" name="datums"></p>
+            <p>mēnesis:<input type="text" id="birthday-month" name="menesis"></p>
+            <p>gads:<input type="text" id="birthday-year" name="gads"></p>
+            <p><input name="poga" value="Aprēķināt dienu skaitu līdz dzimšanas dienai" type="button" onclick="Dienas();"></p>
+            <p>Līdz svētkiem atlikušas <input name="dienas" type="text" id="days-to-birthday"> dienas</p>
+		
+	</form>
+	<script>
+		function Dienas() {
+			const day = parseInt(document.getElementById("birthday-day").value);
+			const month = parseInt(document.getElementById("birthday-month").value) - 1;
+			const year = parseInt(document.getElementById("birthday-year").value);
+
+			const birthday = new Date(year, month, day);
+			const today = new Date();
+
+			if (birthday < today) {
+				birthday.setFullYear(birthday.getFullYear() + 1);
+			}
+
+			const oneDay = 24 * 60 * 60 * 1000;
+			const daysToBirthday = Math.round((birthday - today) / oneDay);
+
+			document.getElementById("days-to-birthday").value = daysToBirthday;
+		}
+	</script>
+</body>
+</html>
